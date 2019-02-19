@@ -20,6 +20,8 @@
 #include "stdint.h"
 #include "at_errors.h"
 #include "at_debug.h"
+#include "at_tools.h"
+#include "eprintf.h"
 
 #define AT_CMD_LINE_LEN 128 //max length per AT cmd string
 #define AT_CMD_CHAR_NUM_MAX 10
@@ -52,11 +54,13 @@ typedef struct
 typedef struct
 {
 	uint8_t cmd_name[12];
-	ATSta_t (*cmd_handler)(AT_str_t *);
+	void (*cmd_handler)(AT_str_t *);
 	//int (*cmd_responser)(void);
 } AT_cmd_handler_t;
 
-void AT_RSP_process(char *format, ...);
+extern int user_put_char(int c);
+#define AT_RSP_process(FMT, ...) eprintf(user_put_char, FMT, ## __VA_ARGS__)
+
 ATSta_t AT_CMD_process(char *at_cmd_str);
 void AT_Module_Init(void);
 #endif
