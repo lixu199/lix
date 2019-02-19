@@ -1,0 +1,40 @@
+# Project: at_test
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = ../AT_cmd/at.o ../AT_cmd/at_tools.o ../main.o ../at_user_opt.o ../AT_cmd/eprintf/eprintf.o
+LINKOBJ  = ../AT_cmd/at.o ../AT_cmd/at_tools.o ../main.o ../at_user_opt.o ../AT_cmd/eprintf/eprintf.o
+LIBS     = -L"D:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"C:/Users/HTS_AE_ldj/Desktop/AT_TEST/AT_cmd" -pg -g3
+INCS     = -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/心率算法/AT_CMD_PORT" -I"F:/心率算法/AT_CMD_PORT/AT_cmd" -I"F:/心率算法/AT_CMD_PORT/AT_cmd/eprintf"
+CXXINCS  = -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"F:/心率算法/AT_CMD_PORT" -I"F:/心率算法/AT_CMD_PORT/AT_cmd" -I"F:/心率算法/AT_CMD_PORT/AT_cmd/eprintf"
+BIN      = at_test.exe
+CXXFLAGS = $(CXXINCS) -pg -g3
+CFLAGS   = $(INCS) -pg -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+../AT_cmd/at.o: ../AT_cmd/at.c
+	$(CC) -c ../AT_cmd/at.c -o ../AT_cmd/at.o $(CFLAGS)
+
+../AT_cmd/at_tools.o: ../AT_cmd/at_tools.c
+	$(CC) -c ../AT_cmd/at_tools.c -o ../AT_cmd/at_tools.o $(CFLAGS)
+
+../main.o: ../main.c
+	$(CC) -c ../main.c -o ../main.o $(CFLAGS)
+
+../at_user_opt.o: ../at_user_opt.c
+	$(CC) -c ../at_user_opt.c -o ../at_user_opt.o $(CFLAGS)
+
+../AT_cmd/eprintf/eprintf.o: ../AT_cmd/eprintf/eprintf.c
+	$(CC) -c ../AT_cmd/eprintf/eprintf.c -o ../AT_cmd/eprintf/eprintf.o $(CFLAGS)

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "at.h": "c",
+        "stdint.h": "c",
+        "xlocale": "c"
+    }
+}
